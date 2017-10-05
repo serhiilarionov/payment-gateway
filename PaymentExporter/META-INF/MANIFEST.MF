@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Class-Path: microba.jar jaybird-full-2.2.7.jar jettison-1.3.3.jar Paym
+ entExporter.jar
+Created-By: 1.7.0_76 (Oracle Corporation)
+Main-Class: com.softproject.MainForm
+

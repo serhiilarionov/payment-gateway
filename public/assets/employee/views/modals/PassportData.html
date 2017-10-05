@@ -1,0 +1,74 @@
+<div style="margin: 25px">
+  <div class="row">
+    <div class="col-lg-12 col-sm-12" style="width: 100%;
+                                            text-align: center;
+                                            margin-bottom: 10px;
+                                            font-size: 14pt;">
+      Введіть дані мешканця
+    </div>
+  </div>
+  <form role="form" class="form-horizontal" novalidate="novalidate"
+        name="passportDataForm" id="passportDataForm">
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Прізвище:</label>
+      <div class="col-lg-4" ng-class="{'has-error':passportDataForm.lastName.$invalid && passportDataForm.lastName.$dirty}">
+        <input type="text" id="lastName" name="lastName" class="form-control" ng-model="lastName" placeholder="прізвище"
+               required>
+      </div>
+      <p class="text-danger" ng-show="passportDataForm.lastName.$dirty && passportDataForm.lastName.$invalid">Не вірно введене прізвище</p>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Ім’я:</label>
+      <div class="col-lg-4" ng-class="{'has-error':passportDataForm.firstName.$invalid && passportDataForm.firstName.$dirty}">
+        <input type="text" id="firstName" name="firstName" class="form-control" ng-model="firstName" placeholder="ім’я"
+               required>
+      </div>
+      <p class="text-danger" ng-show="passportDataForm.firstName.$dirty && passportDataForm.firstName.$invalid">Не вірно введене ім’я</p>
+    </div>
+    <div class="form-group" >
+      <label class="col-lg-4 control-label">По батькові:</label>
+      <div class="col-lg-4" ng-class="{'has-error':passportDataForm.patronymic.$invalid && passportDataForm.patronymic.$dirty}">
+        <input type="text" id="patronymic" name="patronymic" class="form-control" ng-model="patronymic" placeholder="по батькові"
+               required>
+      </div>
+        <p class="text-danger" ng-show="passportDataForm.patronymic.$dirty && passportDataForm.patronymic.$invalid">Не вірно поле по батькові</p>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Номер паспорту:</label>
+      <div class="col-lg-4" ng-class="{'has-error':passportDataForm.passportNumber.$invalid && passportDataForm.passportNumber.$dirty}">
+        <input type="text" id="passportNumber" name="passportNumber" class="form-control" ng-model="passportNumber" placeholder="серія та номер паспорту"
+               required>
+      </div>
+      <p class="text-danger" ng-show="passportDataForm.passportNumber.$dirty && passportDataForm.passportNumber.$invalid">Не вірно введена серія та номер паспорту</p>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Ким виданий:</label>
+      <div class="col-lg-4" ng-class="{'has-error':passportDataForm.issuedPassport.$invalid && passportDataForm.issuedPassport.$dirty}">
+        <input type="text" id="issuedPassport" name="issuedPassport" class="form-control" ng-model="issuedPassport" placeholder="ким виданий паспорт"
+               ng-minlength="10"
+               required>
+      </div>
+      <p class="text-danger" ng-show="passportDataForm.issuedPassport.$dirty && passportDataForm.issuedPassport.$invalid">Введить поле "Ким виданий"</p>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Коли видан:</label>
+      <div class="col-lg-4">
+        <div class="input-group">
+          <input type="text" class="form-control" ng-disabled="true" datepicker-popup="dd.MM.yyyy" ng-model="whenIssuedPassport" is-open="opened" min-date="'01.01.1900'"
+                 max-date="now" ng-keyup="dateValidation()" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-4 col-lg-offset-2">
+        <button id="generatePinCode" class="btn btn-default btn-right" ng-disabled="passportDataForm.$invalid || !dateValid" ng-click="generatePinCode()">Згенерувати пін код</button>
+      </div>
+      <div class="col-lg-2">
+        <button id="closeModal" class="btn btn-default btn-right" ng-click="cancel()">Вихід</button>
+      </div>
+    </div>
+  </form>
+</div>

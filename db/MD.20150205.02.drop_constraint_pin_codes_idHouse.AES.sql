@@ -1,0 +1,1 @@
+ALTER TABLE pin_codes DROP CONSTRAINT "pin_codes_idHouse_key" CASCADE;

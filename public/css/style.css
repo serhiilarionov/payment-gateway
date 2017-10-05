@@ -1,0 +1,261 @@
+label {
+  width: 150px;
+}
+.address-selection-form {
+  padding: 10px auto 60px;
+}
+.left-menu {
+  float: left;
+  margin: 30px 0;
+  min-width: 10%;
+  max-width: 15%;
+}
+.btn-right {
+  float: right;
+}
+.container {
+  padding-top: 25px;
+}
+.address_progress {
+  display: inline-block;
+  width: 1000px;
+}
+.address_progress .active {
+  background-color: #337ab7;
+  color: #fff;
+}
+.address_progress .active :first-child:after {
+  border-right-color: transparent;
+  border-left-color: #337ab7;
+}
+.address_progress .active :last-child:before,
+.address_progress .active .center:before {
+  border-right-color: #337ab7;
+  border-top-color: #337ab7;
+  border-bottom-color: #337ab7;
+}
+.address_progress .complete {
+  background-color: #7cba70;
+  color: #fff;
+}
+.address_progress .complete :last-child:after {
+  border-left-color: #7cba70;
+}
+.address_progress .complete :last-child:before,
+.address_progress .complete .center:before {
+  border-right-color: #7cba70;
+  border-top-color: #7cba70;
+  border-bottom-color: #7cba70;
+}
+.address_progress li {
+  height: 40px;
+  background-color: #eeeeee;
+  margin-right: 30px;
+  display: inline-block;
+  padding: 10px 60px 10px 20px;
+  font-size: 15px;
+  position: relative;
+  color: #8c8c8c;
+}
+.address_progress li span {
+  border-radius: 50%;
+  margin-right: 10px ;
+  border: 1px solid ;
+}
+.address_progress li:first-child {
+  width: 30%;
+  border-radius: 3px 0 0 3px;
+}
+.address_progress li:first-child :after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 20px solid #eeeeee;
+  border-top: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  position: absolute;
+  bottom: 0;
+  right: -40px;
+}
+.address_progress li:last-child {
+  width: 30%;
+  border-radius: 0 3px 3px 0;
+}
+.address_progress li:last-child :before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-top: 20px solid #eeeeee;
+  border-right: 20px solid #eeeeee;
+  border-bottom: 20px solid #eeeeee;
+  position: absolute;
+  bottom: 0;
+  left: -25px;
+}
+.address_progress .center :after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 20px solid #eeeeee;
+  border-top: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  position: absolute;
+  bottom: 0;
+  right: -40px;
+}
+.address_progress .center :before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-top: 20px solid #eeeeee;
+  border-right: 20px solid #eeeeee;
+  border-bottom: 20px solid #eeeeee;
+  position: absolute;
+  bottom: 0;
+  left: -25px;
+}
+.disabled {
+  background-color: #eeeeee;
+  pointer-events: none;
+  cursor: default;
+  color: #999;
+}
+.registration-confirm-form {
+  max-width: 550px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.registration-confirm-form .parsley-errors-list li {
+  margin: 7px;
+  color: #D00;
+}
+.renters_combo_box {
+  width: 500px;
+}
+.renters_combo_box ul {
+  width: 500px;
+}
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: white;
+}
+a {
+  color: #004ea6  ;
+}
+.footer {
+  position: absolute;
+  margin-bottom: 0;
+  width: 100%;
+  height: 60px;
+  text-align: center;
+}
+.list-title {
+  cursor: default;
+  background-color: #eeeeee;
+}
+.btn_center {
+  margin: 0 auto;
+  display: block;
+}
+#userReg input.ng-valid.ng-dirty:not(.userExists),
+#userReg select.ng-valid.ng-dirty,
+#userVerification input.ng-valid.ng-dirty:not(.doesntmatch),
+#userVerification select.ng-valid.ng-dirty {
+  border: 1px solid #1cc919;
+}
+#userReg input.ng-invalid.ng-dirty,
+#userReg input.ng-dirty.userExists,
+#userReg select.ng-invalid.ng-dirty,
+#userVerification input.ng-invalid.ng-dirty,
+#userVerification select.ng-invalid.ng-dirty {
+  border: 1px solid #c94c37;
+}
+#userReg .control-label:after,
+#userVerification .control-label:after {
+  content: "*";
+  color: #ff4d52;
+}
+#userReg .alert.alert-danger,
+#userVerification .alert.alert-danger {
+  padding: 3px;
+  margin-bottom: 0;
+}
+form#userReg .form-group,
+#userVerification .form-group {
+  margin-bottom: 5px;
+}
+form#userReg {
+  margin: 20px;
+}
+#genCertDiv {
+  display: inline-block;
+  margin-left: 20px;
+}
+#grid1 .ui-grid-cell-contents {
+  padding: 8px;
+}
+#employeesgrid {
+  height: 400px;
+  margin: 20px;
+}
+#userReg > div:nth-child(5) > label {
+  width: 220px;
+}
+#userVerification label {
+  width: 300px;
+}
+#userVerification input.doesntmatch {
+  border: 1px solid #c94c37;
+}
+#graph {
+  position: relative;
+  width: 93%;
+  left: 0;
+}
+div.ui-grid-cell input {
+  width: 100%;
+  padding: 0px 10px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  border-radius: 4px;
+  height: 30px;
+}
+.modalForm {
+  margin: 25px;
+}
+.custom-height-modal {
+  weight: 800px;
+}
+option:first-child {
+  selected: selected;
+}
+.navbar {
+  border: 0;
+}
+.nav {
+  padding-left: 20px;
+}
+.maincontent {
+  border: 1px solid #d7d7d7;
+  border-radius: 4px;
+  margin: 20px;
+}
+.nameInput {
+  color: #848484;
+}
+.gridTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #848484;
+}
+.gridTitle span {
+  color: black;
+}
+.hide {
+  display: none;
+}

@@ -1,0 +1,1 @@
+CREATE INDEX employee_login_index ON employees ("login");

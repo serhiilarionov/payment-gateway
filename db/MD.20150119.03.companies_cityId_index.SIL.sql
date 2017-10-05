@@ -1,0 +1,1 @@
+CREATE INDEX companies_cityId_index ON companies ("cityId");

@@ -1,0 +1,145 @@
+@import './AddressSelection.less';
+@import "registration-confirm";
+@import "pay.less";
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: white;
+}
+
+a {
+  color: #004ea6  ;
+}
+
+.footer {
+  position: absolute;
+  margin-bottom: 0;
+  width: 100%;
+  height: 60px;
+  text-align: center;
+}
+.list-title {
+  cursor: default;
+  background-color: #eeeeee;
+}
+
+.btn_center {
+  margin: 0 auto;
+  display: block;
+}
+
+
+#userReg input.ng-valid.ng-dirty:not(.userExists),
+#userReg select.ng-valid.ng-dirty,
+#userVerification input.ng-valid.ng-dirty:not(.doesntmatch),
+#userVerification select.ng-valid.ng-dirty {
+  border: 1px solid #1cc919;
+}
+#userReg input.ng-invalid.ng-dirty,
+#userReg input.ng-dirty.userExists,
+#userReg select.ng-invalid.ng-dirty,
+#userVerification input.ng-invalid.ng-dirty,
+#userVerification select.ng-invalid.ng-dirty {
+  border: 1px solid #c94c37;
+}
+#userReg .control-label:after, #userVerification .control-label:after{
+  content:"*";
+  color: #ff4d52;
+}
+#userReg .alert.alert-danger, #userVerification .alert.alert-danger {
+  padding: 3px;
+  margin-bottom: 0;
+}
+form#userReg .form-group, #userVerification .form-group {
+  margin-bottom: 5px;
+}
+form#userReg {
+  margin: 20px;
+}
+#genCertDiv {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+#grid1 .ui-grid-cell-contents {
+  padding: 8px;
+}
+
+#employeesgrid {
+  height: 400px;
+  margin: 20px;
+}
+
+#userReg > div:nth-child(5) > label {
+  width: 220px;
+}
+
+#userVerification label {
+  width: 300px;
+}
+
+#userVerification input.doesntmatch {
+  border: 1px solid #c94c37;
+}
+#graph {
+  position: relative;
+  width: 93%;
+  left: 0;
+}
+
+div.ui-grid-cell input {
+  width: 100%;
+  padding: 0px 10px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  border-radius: 4px;
+  height: 30px;
+}
+
+.modalForm {
+  margin: 25px;
+}
+
+.custom-height-modal {
+  weight: 800px;
+}
+
+option:first-child {
+  selected: selected;
+}
+
+.navbar {
+  border: 0;
+}
+.nav {
+  padding-left: 20px;
+}
+
+.maincontent {
+  border: 1px solid #d7d7d7;
+  border-radius: 4px;
+  margin: 20px;
+}
+
+.nameInput {
+  color: #848484;
+}
+
+.gridTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #848484;
+  span {
+    color:black;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+
+
+
+

@@ -1,0 +1,131 @@
+<div class="form-group" style="margin-bottom: 10px">
+  <div class="form-group">
+    <span>{{address}}</span>
+  </div>
+  <div class="form-group">
+    <form role="form" name="dateForm" id="dateForm" novalidate="novalidate">
+        <div class="input-group">
+          <span class="text-capitalize">Вибрати період: </span>
+        </div>
+      <div class="form-inline">
+        <div class="input-group">
+            <select id="year" name="year" class="form-control"
+                    ng-options="year for year in years"
+                    ng-model="selectedYear">
+            </select>
+          </div>
+        <div class="input-group">
+          <select name="month" id="month" class="form-control"
+                  ng-options="month.number as month.name for month in monthStatic"
+                  ng-model="selectedMonth">
+          </select>
+        </div>
+        <button id="accrual" ng-disabled="!years.length" class="btn btn-primary" ng-click="getAccruals()">
+          <span class="text-capitalize">Перегляд</span>
+        </button>
+      </div>
+    </form>
+  </div>
+    <div class="form-group">
+      <form role="form" name="renterForm" id="renterForm" novalidate="novalidate">
+        <div class="input-group">
+          <span class="text-capitalize">Платник: </span>
+        </div>
+        <div class="input-group renters_combo_box">
+          <editable-combobox options="renters" ></editable-combobox>
+        </div>
+      </form>
+    </div>
+    <div class="form-group">
+
+    </div>
+  <span class="gridTitle"><span ng-bind="dateInfo.text"></span></span>
+
+  <div class="alert alert-info" ng-show="dateInfo.err != null">
+    <button type="button" class="close" ng-click="dateInfo.err = null">&times;</button>
+    <strong>Увага!</strong> {{dateInfo.err}}
+  </div>
+  <form role="form" name="toPayForm" class="form-horizontal" novalidate="novalidate">
+    <table class="table table-striped" ng-show="payments.length">
+      <thead>
+      <tr>
+        <th>Особовий рахунок</th>
+        <th>Підприємство</th>
+        <th>Послуга</th>
+        <th>Нараховано</th>
+        <th>Залишилось сплатити</th>
+        <th>Cплачую</th>
+      </tr>
+      </thead>
+      <tbody ng-repeat="payment in payments">
+        <tr>
+          <td class="col-sm-2">{{payment.number}}</td>
+          <td class="col-sm-3">{{payment.companyName}}</td>
+          <td class="col-sm-3">{{payment.serviceName}}</td>
+          <td class="col-sm-1">{{payment.accrual}}</td>
+          <td class="col-sm-1">{{payment.leftToPay}}</td>
+          <td>
+            <div ng-class="{'has-error':toPayForm.toPay{{payment.id}}.$invalid && toPayForm.toPay{{payment.id}}.$dirty}">
+              <input type="text" name="toPay{{payment.id}}" ng-model="payment.toPay" class='form-control' ng-pattern="/^[0-9]{1,6}([,.][0-9]{1,2}){0,1}$/">
+              <p class="text-danger" ng-show="toPayForm.toPay{{payment.id}}.$dirty && toPayForm.toPay{{payment.id}}.$invalid">Помилка при введенні суми</p>
+            </div>
+          </td>
+          <td>
+            <button type="button" ng-click="showCounter($index)" class="btn btn-sm" ng-show="payment.expandableRow"> - </button>
+            <button type="button" ng-click="showCounter($index)" class="btn btn-sm" ng-hide="payment.expandableRow"> + </button>
+          </td>
+        </tr>
+        <tr align="right" ng-show="payment.expandableRow">
+          <td></td>
+          <td colspan="5">
+            <div class="col-sm-3" style="padding-top: 5px">Період оплати</div>
+            <div class="col-sm-4">
+              <div class="input-group">
+                <input type="text" class="form-control" ng-readonly="true" datepicker-popup="dd.MM.yyyy" ng-model="payment.startDate" is-open="$parent.startOpened[payment.id]" min-date="'01.01.1900'"
+                       max-date="now" datepicker-options="dateOptions" ng-required="true" close-text="Close"  />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="open($event, 'startOpened', '{{payment.id}}')"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </div>
+            </div>
+            <div class="col-sm-4 col-sm-offset-1">
+              <div class="input-group">
+                <input type="text" class="form-control" ng-readonly="true" datepicker-popup="dd.MM.yyyy" ng-model="payment.endDate" is-open="$parent.endOpened[payment.id]" min-date="'01.01.1900'"
+                       max-date="now" datepicker-options="dateOptions" ng-required="true" close-text="Close"  />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="open($event, 'endOpened', '{{payment.id}}')"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </div>
+            </div>
+          </td>
+          <td colspan="2" ng-show="payment.counters.length">
+            <h4 class="text-center">Лічильники</h4>
+            <table class="table table-condensed">
+              <thead>
+                <tr>
+                  <th>Місце </th>
+                  <th>Значення </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="counter in payment.counters">
+                  <td ng-show="counter.position" style="vertical-align:middle">{{counter.position}}</td>
+                  <td ng-hide="counter.position" style="vertical-align:middle">Не вказано</td>
+                  <td>
+                    <div ng-class="{'has-error':toPayForm.counterInput{{payment.id+''+counter.id}}.$invalid && toPayForm.counterInput{{payment.id+''+counter.id}}.$dirty}">
+                      <input type="text" ng-model="counter.meterReading" name="counterInput{{payment.id+''+counter.id}}" class='form-control'>
+                      <p class="text-danger" ng-show="toPayForm.counterInput{{payment.id+''+counter.id}}.$invalid && toPayForm.counterInput{{payment.id+''+counter.id}}.$dirty">Помилка при введенні суми</p>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+  <div class="col-md-2 col-md-offset-10" ng-show="payments.length">
+      <input type="button" class="form-control" value="Сплатити" ng-click="verification()"/>
+    </div>
+</div>

@@ -1,0 +1,2 @@
+INSERT INTO pin_codes("idHouse", "pinCode", "whenIssuedPassport", "issuedPassport", "passportNumber", "firstName", "lastName", patronymic, "isDeleted")
+    VALUES ('00000000010200003004', 1234, '1993-2-2'::DATE, 'Каким то РВД Жовтневого раена', 'СН123456', 'Коля', 'Коля', 'Николаевич', false);

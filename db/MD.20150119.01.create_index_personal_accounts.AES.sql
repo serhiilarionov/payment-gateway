@@ -1,0 +1,2 @@
+CREATE INDEX personal_accounts_minyearindex ON personal_accounts (EXTRACT(YEAR FROM DATE ("dateOfAccrued")));
+CREATE INDEX personal_accounts_accrualsindex ON personal_accounts ("idHouse", EXTRACT(YEAR FROM DATE ("dateOfAccrued")), EXTRACT(MONTH FROM DATE ("dateOfAccrued")));

@@ -1,0 +1,5 @@
+<div id="employeesgrid" ui-grid="gridOptions" ui-grid-selection class="grid"></div>
+<div class="container">
+  <button ng-disabled="!isRowSelected" class="btn btn-danger" ng-click="revokeCertificate()">Анулювати сертифікат</button>
+  <button ng-disabled="!isRowSelected" class="btn btn-success" ng-click="generateNewCertificate()">Перевипустити сертифікат</button>
+</div>

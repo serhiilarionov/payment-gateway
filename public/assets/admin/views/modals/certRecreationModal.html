@@ -1,0 +1,17 @@
+<div>
+  <div class="modal-header">
+    <h4 class="modal-title">Перевипуск сертифікату користувача: </h4>
+  </div>
+  <div class="modal-body">
+    <p><b>ПІБ:</b> {{currentSelection.fio}}</p>
+    <p><b>Логін:</b> {{currentSelection.login}}</p>
+    <p><b>Роль:</b> {{currentSelection.roles | roleOfEmployee}}</p>
+    <p>На який термін перевипустити сертифікат? (у днях)</p>
+    <input style="width: 300px" type="number" class="form-control" ng-model="userNewCertTerm" min="1" max="365" ng-required="true">
+  </div>
+
+  <div class="modal-footer">
+    <button ng-disabled="data || err" class="btn btn-warning" ng-click="recreate()">Перевипустити</button>
+    <button class="btn btn-primary" ng-click="cancel()">Відмінити</button>
+  </div>
+</div>

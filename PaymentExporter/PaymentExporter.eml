@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component inherit-compiler-output="true" inheritJdk="true">
+	<output-test url="file://$MODULE_DIR$/out/test/PaymentExporter"/>
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$">
+		<excludeFolder url="file://$MODULE_DIR$/src/org/jdesktop"/>
+	</contentEntry>
+	<levels>
+		<level name="jettison-1.3.3" value="project"/>
+		<level name="microba" value="project"/>
+		<level name="Export" value="project"/>
+		<level name="jaybird-full-2.2.7" value="project"/>
+	</levels>
+</component>

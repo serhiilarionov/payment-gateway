@@ -1,0 +1,150 @@
+<form ng-show="!submittedSuccessfully" novalidate id="userReg" name="userReg" style="width:400px" ng-submit="submit()">
+  <legend>Реєстрація користувача</legend>
+  <div class="form-group">
+    <label for="userLogin" class="control-label">Логін</label>
+    <input type="text" class="form-control" id="userLogin" name="userLogin" ng-class="{userExists: userExists}"
+           ng-model="formInfo.userLogin" ng-blur="checkIfLoginExists()" placeholder="Введіть логін"
+           ng-pattern="/^[A-Za-z0-9_-]{0,20}$/" ng-minlength=4 ng-maxlength=20 ng-required="true">
+
+    <div ng-show="(userReg.userLogin.$invalid && submitted)|| userExists || userReg.userLogin.$error.pattern">
+      <div ng-show="userReg.userLogin.$error.required" class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>Це обов’язкове поле
+      </div>
+      <div ng-show="userReg.userLogin.$error.minlength && !userReg.userLogin.$error.pattern" class="alert alert-danger"
+           role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>Логін повинен мати мінімум 4 символа
+      </div>
+      <div ng-show="userReg.userLogin.$error.maxlength" class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>Логін повинен мати максимум 20 символів
+      </div>
+      <div ng-show="userReg.userLogin.$error.pattern && !userReg.userLogin.$error.maxlength" class="alert alert-danger"
+           role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>Дозволено літери англійського алфавіту, цифри, "-" та "_"
+      </div>
+      <div ng-show="userExists" class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>Користувач з таким логіном вже існує
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="userLogin" class="control-label">Email</label>
+    <input type="email" class="form-control" id="userEmail" name="userEmail" ng-model="formInfo.userEmail"
+           placeholder="Введіть Email" ng-required="true">
+
+    <div ng-show="((userReg.userEmail.$invalid || userReg.userEmail.$error.pattern) && submitted)">
+      <div ng-show="userReg.userEmail.$error.required" class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>Це обов’язкове поле
+      </div>
+      <div ng-show="userReg.userEmail.$error.pattern" class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>Перевірте правильність вводу Email
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="userFio" class="control-label">ПІБ</label>
+    <input type="text" class="form-control" id="userFio" name="userFio" ng-model="formInfo.userFio"
+           placeholder="Введіть ПІБ"
+           ng-pattern="/^[A-ZА-ЯЁІЇЄ]-?’?[a-zа-яёіїє]+(-?’?[A-ZА-ЯЁІЇЄ]?-?’?[a-zа-яёіїє]+)? [A-ZА-ЯЁІЇЄ]-?’?[a-zа-яёіїє]+(-?’?[A-ZА-ЯЁІЇЄ]?-?’?[a-zа-яёіїє]+)?(?: [A-ZА-ЯЁІЇЄ]-?’?[a-zа-яёіїє]+(-?’?[A-ZА-ЯЁІЇЄ]?-?’?[a-zа-яёіїє]+)?)?$/"
+           ng-minlength=3 ng-maxlength=50 ng-required="true">
+
+    <div ng-show="userReg.userFio.$invalid && submitted">
+      <div ng-show="userReg.userFio.$error.required" class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>Це обов’язкове поле
+      </div>
+      <div ng-show="userReg.userFio.$error.minlength" class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>ПІБ повинен мати мінімум 3 символа
+      </div>
+      <div ng-show="userReg.userFio.$error.maxlength" class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>ПІБ повинен мати максимум 50 символів
+      </div>
+      <div ng-show="userReg.userFio.$error.pattern" class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>Перевірте правильність вводу
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="userCity" class="control-label">Роль</label>
+    <select class="form-control" id="userRole" name="userRole" ng-model="formInfo.userRole" ng-required="true">
+      <option value="employee">Робітник компанії</option>
+      <option value="administrator">Адміністратор</option>
+    </select>
+
+    <div ng-show="userReg.userRole.$invalid && submitted">
+      <div ng-show="userReg.userRole.$error.required" class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>Це обов’язкове поле
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="userCertTerm" class="control-label">Термін дії сертифікату у днях</label>
+    <input type="number" class="form-control" id="userCertTerm" name="userCertTerm" ng-model="formInfo.userCertTerm"
+           min="1" max="365" ng-required="true">
+
+    <div ng-show="userReg.userCertTerm.$invalid && submitted">
+      <div ng-show="userReg.userCertTerm.$error.required" class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>Це обов’язкове поле
+      </div>
+      <div ng-show="userReg.userCertTerm.$error.number" class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>Неправильний формат числа
+      </div>
+      <div ng-show="userReg.userCertTerm.$error.min" class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>Має бути мінімум 1 день
+      </div>
+      <div ng-show="userReg.userCertTerm.$error.max" class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>Має бути максимум 365 днів
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="userCity" class="control-label">Місто</label>
+    <select class="form-control" id="userCity" name="userCity" ng-model="formInfo.userCity"
+            ng-options="city.nameUk for city in cities" ng-change="getCompanies()" ng-required="true"></select>
+
+    <div ng-show="userReg.userCity.$invalid && submitted">
+      <div ng-show="userReg.userCity.$error.required" class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>Це обов’язкове поле
+      </div>
+    </div>
+    <div ng-show="(!companiesVisible) && userReg.userCity.$dirty && submitted">В цьому місті немає компаній, оберіть
+      інше
+    </div>
+  </div>
+
+  <div class="form-group" ng-show="companiesVisible">
+    <label for="userCity" class="control-label">Компанія</label>
+    <select class="form-control" id="userCompany" name="userCompany" ng-model="formInfo.userCompany"
+            ng-options="company.companyName for company in companies" ng-required="true"></select>
+
+    <div ng-show="userReg.userCompany.$invalid && submitted">
+      <div ng-show="userReg.userCompany.$error.required" class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>Це обов’язкове поле
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-success">Відправити</button>
+</form>
+<div id="genCertDiv" ng-show="submittedSuccessfully">
+  <div class="alert alert-success" role="alert">Користувача успішно зареєстровано</div>
+  <button type="button" class="btn btn-success" ng-click="createNewUser()">Зареєструвати нового користувача</button>
+</div>

@@ -1,0 +1,15 @@
+<div class="col-lg-2">
+  <span class="control-label" >Оберіть систему для платежу: </span>
+  <select name="month" id="month" class="form-control"
+          ng-options="system.id as system.name for system in paymentSystems"
+          ng-model="selected" ng-change="createPaymentForm()"          >
+  </select>
+  <form method="POST" accept-charset="utf-8" name="liqPayForm" action="https://www.liqpay.com/api/checkout">
+    <input type="hidden" ng-model="data" name="data" ng-value="data"/>
+    <input type="hidden" ng-model="signature" name="signature" ng-value="signature" />
+    <input type="image" src="//static.liqpay.com/buttons/p1ru.radius.png" name="btn_text" />
+  </form>
+  </div>
+</div>
+
+

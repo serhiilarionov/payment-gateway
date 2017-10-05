@@ -1,0 +1,28 @@
+<div>
+  <div class="form-group">
+    <form role="form" name="dateForm" id="dateForm">
+      <div class="form-inline">
+        <div class="input-group">
+          <select class="form-control" id="userCity" name="userCity" ng-model="selectedCity"
+                  ng-options="city.id as city.nameUk for city in cities"
+                  ng-change="getCompanies()"
+                  ng-required="true"></select>
+        </div>
+        <div class="input-group">
+          <select id="companies" name="companies" class="form-control"
+                  ng-options="company.id as company.companyName for company in companies"
+                  ng-model="selectedCompany">
+          </select>
+        </div>
+        <button id="accrual" class="btn btn-primary" ng-click="setClosingDate()">
+          <span class="text-capitalize">Закрити місяць</span>
+        </button>
+      </div>
+      <div class="input-group">
+        <div class="well well-small pull-left" ng-model="closingDate">
+          <datepicker></datepicker>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div>
+    <form role="form" class="form-horizontal modalForm" novalidate="novalidate" method="post"
+          name="checkingPinCodeForm" id="checkingPinCodeForm">
+      <div class="form-group">
+        <span class="text-capitalize">{{address}}</span>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-4 control-label">Комунальний код:</label>
+        <div class="col-lg-2" ng-class="{'has-error':checkingPinCodeForm.pin_code.$invalid && checkingPinCodeForm.pin_code.$dirty}">
+          <input placeholder="номер" type="password" class="form-control" id="pin_code" name="pin_code"
+                 ng-model="pin_code"
+                 ng-minlength="4"
+                 ng-maxlength="4"
+                 ng-pattern="/^[\d]+$/"
+                 required>
+          <p class="text-danger" ng-show="checkingPinCodeForm.pin_code.$dirty && checkingPinCodeForm.pin_code.$error.minlength">Занадто короткий комунальний код</p>
+
+          <p class="text-danger" ng-show="checkingPinCodeForm.pin_code.$dirty && checkingPinCodeForm.pin_code.$error.required">Введіть комунальний код</p>
+
+          <p class="text-danger" ng-show="checkingPinCodeForm.pin_code.$dirty && checkingPinCodeForm.pin_code.$error.maxlength">Комунальний код не повинен мати більше 4 символів</p>
+
+        </div>
+      </div>
+      <div class="form-group">
+        <button ng-click="submit()" class="btn btn-default btn-right">Далі >></button>
+      </div>
+    </form>
+</div>

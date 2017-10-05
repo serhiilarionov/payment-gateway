@@ -1,0 +1,8 @@
+node_modules
+public/components
+app/certificates
+.idea
+*.log
+dump.rdb
+!node_modules/acl-knex/lib/databaseTasks.js
+!node_modules/acl-knex/lib/knex-backend.js

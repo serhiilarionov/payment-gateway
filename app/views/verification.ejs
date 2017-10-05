@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Завершення реєстрації</title>
+  <link rel="stylesheet" href="/components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/components/parsleyjs/src/parsley.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+<div class="container">
+  <form method="post" action="" id="userVerification" name="userVerification" class="registration-confirm-form" data-parsley-validate>
+    <legend>Завершення реєстрації</legend>
+    <div class="form-group">
+      <label for="userMailPass" class="control-label">Пароль, який прийшов вам на пошту</label>
+      <input type="password" class="form-control" id="userMailPass" name ="userMailPass" placeholder="Введіть пароль"
+             data-parsley-trigger="change"
+             data-parsley-required-message="Це обов’язкове поле"
+             data-parsley-pattern="/^[A-Za-z0-9_-]{0,20}$/"
+             data-parsley-pattern-message="Має містити англійські букви та цифри (не більше ніж 20 симовлів)"
+             required />
+    </div>
+
+    <div class="form-group">
+      <label for="userNewPass1" class="control-label">Введіть новий пароль</label>
+      <input type="password" class="form-control" id="userNewPass1" name ="userNewPass1" placeholder="Введіть новий пароль"
+             data-parsley-trigger="change"
+             data-parsley-required-message="Це обов’язкове поле"
+             data-parsley-pattern="/^[A-Za-z0-9]{6,20}$/"
+             data-parsley-pattern-message="Має містити англійські букви та цифри у кількості 6-20"
+             required />
+    </div>
+
+    <div class="form-group">
+      <label for="userNewPass2" class="control-label">Підтвердіть пароль</label>
+      <input type="password" class="form-control" id="userNewPass2" name = "userNewPass2" placeholder="Підтвердіть новий пароль"
+             data-parsley-trigger="change"
+             data-parsley-required-message="Це обов’язкове поле"
+             data-parsley-equalto="#userNewPass1"
+             data-parsley-equalto-message="Паролі не співпадають"
+             data-parsley-pattern="/^[A-Za-z0-9]{6,20}$/"
+             data-parsley-pattern-message="Має містити англійські букви та цифри у кількості 6-20"
+             required />
+    </div>
+
+    <button type="submit" class="btn btn-success" >Завершити реєстрацію</button>
+  </form>
+</div>
+<footer class='footer'>
+  PG 2015
+  <div class="clearfix"></div>
+</footer>
+
+<script src="/components/jquery/dist/jquery.min.js"></script>
+<script src="/components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/components/parsleyjs/dist/parsley.min.js"></script>
+</body>
+</html>

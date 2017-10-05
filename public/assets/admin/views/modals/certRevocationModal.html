@@ -1,0 +1,18 @@
+<div>
+    <div class="modal-header">
+      <h4 class="modal-title">Ануляція сертифікату</h4>
+    </div>
+    <div ng-show="!currentSelection.isdisabled" class="modal-body">
+      <p>Ви впевнені, що бажаєте анулювати сертифікат цього користувача?</p>
+      <p><b>ПІБ:</b> {{currentSelection.fio}}</p>
+      <p><b>Логін:</b> {{currentSelection.login}}</p>
+      <p><b>Роль:</b> {{currentSelection.roles | roleOfEmployee}}</p>
+    </div>
+    <div ng-show="currentSelection.isdisabled" class="modal-body">
+      <h3>Цей користувач неактивний</h3>
+    </div>
+    <div class="modal-footer">
+      <button ng-disabled="data || err || currentSelection.isdisabled" class="btn btn-warning" ng-click="ok()">Анулювати</button>
+      <button class="btn btn-primary" ng-click="cancel()">Відмінити</button>
+    </div>
+</div>

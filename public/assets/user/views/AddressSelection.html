@@ -1,0 +1,117 @@
+<div>
+  <p>Для того щоб переглянути інформацію про нарахування та оплату комунальних та інших послуг:</p>
+      <ul class="address_progress">
+        <li  ng-class="{'active' : !city.selected, 'complete' : city.selected}"><p ng-class="{'complete:after' : city.selected}"><span>&nbsp1 </span> Оберіть населений пункт</p></li>
+        <li  ng-class="{'active' : city.selected}"><p class="center"><span>&nbsp2 </span> Вкажіть адресу</p></li>
+        <li><p><span> &nbsp3 </span> Введіть комунальний код</p></li>
+      </ul>
+
+    <div class="alert alert-success" ng-show="checkAddress()">
+        <button type="button" class="close"  data-dismiss="alert">&times;</button>
+        Поточна адреса: <strong  >{{addressCheck}}</strong>
+    </div>
+    <form role="form" class="form-horizontal address-selection-form" novalidate="novalidate" method="post"
+        name="addressSelecionForm" id="addressSelecionForm">
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Населений пункт:</label>
+      <div class="col-lg-4">
+          <ui-select id="selectedCity" name="selectedCity"  style="min-width: 300px;" ng-model="city.selected"
+                     ng-disabled="disabled" reset-search-input="false" ng-change="change()">
+              <ui-select-match placeholder="Оберіть місто">{{$select.selected.nameUk}}</ui-select-match>
+              <ui-select-choices repeat="city in cities track by $index"
+                                 refresh="refreshCity($select.search, 'nameUk')"
+                                 refresh-delay="0">
+                  <small>{{city.nameUk}}</small>
+              </ui-select-choices>
+          </ui-select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Вулиця:</label>
+      <div class="col-lg-4">
+         <ui-select id="selectedStreets" name="selectedStreets" style="min-width: 300px;" ng-model="street.selected"
+                     ng-disabled="disabled" reset-search-input="false" >
+              <ui-select-match placeholder="Оберіть вулицю">
+                {{ ($select.selected.streetTypesUk ? $select.selected.streetTypesUk + ' ' : '') + $select.selected.nameUk}}
+              </ui-select-match>
+              <ui-select-choices repeat="street in streets track by $index"
+                                 refresh="refreshStreets($select.search, 'nameUk')"
+                                 refresh-delay="0">
+                  <small>{{ (street.streetTypesUk ? street.streetTypesUk + ' ' : '') + street.nameUk }}</small>
+              </ui-select-choices>
+          </ui-select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Будинок:</label>
+      <div class="col-lg-2" ng-class="{'has-error':addressSelecionForm.address_number_building.$invalid && addressSelecionForm.address_number_building.$dirty}">
+        <input placeholder="номер" type="text" class="form-control" id="address_number_building" name="address_number_building"
+               ng-model="address_number_building"
+               ng-minlength="1"
+               ng-maxlength="3"
+               ng-pattern="/^([1-9][0-9]*)$/"
+               required>
+        <p class="text-danger" ng-show="addressSelecionForm.address_number_building.$dirty && addressSelecionForm.address_number_building.$error.minlength">Введіть номер будинку</p>
+
+        <p class="text-danger" ng-show="addressSelecionForm.address_number_building.$dirty && addressSelecionForm.address_number_building.$error.required">Введіть номер будинку</p>
+
+        <p class="text-danger" ng-show="addressSelecionForm.address_number_building.$dirty && addressSelecionForm.address_number_building.$error.maxlength">Номер будинку не повинен мати більше 3 символів</p>
+      </div>
+      <div class="col-lg-2">
+        <select class=" form-control selector" ng-model="selectedBuildingLetter" id="selectedBuildingLetter" name="selectedBuildingLetter" ng-options="value.id as value.value for (key, value) in letters" data-style="btn-primary"></select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Корпус:</label>
+      <div class="col-lg-2" ng-class="{'has-error':addressSelecionForm.address_housing.$invalid && addressSelecionForm.address_housing.$dirty}">
+        <input placeholder="корпус" type="text" class="form-control" id="address_housing" name="address_housing"
+               ng-model="address_housing"
+               ng-maxlength="2"
+               ng-pattern="/^([1-9][0-9]*)$/">
+        <p class="text-danger" ng-show="addressSelecionForm.address_housing.$dirty && addressSelecionForm.address_housing.$error.maxlength">Корпус має мати не більше 2 символів</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Квартира:</label>
+      <div class="col-lg-2" ng-class="{'has-error':addressSelecionForm.address_number_flats.$invalid && addressSelecionForm.address_number_flats.$dirty}">
+        <input placeholder="номер" type="text" class="form-control"  id="address_number_flats" name="address_number_flats"
+               ng-model="address_number_flats"
+               ng-maxlength="3"
+               ng-pattern="/^[0-9]{0,3}$/">
+        <p class="text-danger" ng-show="addressSelecionForm.address_number_flats.$dirty && addressSelecionForm.address_number_flats.$error.maxlength">Номер квартири не повинен мати більше 3 символів</p>
+      </div>
+      <div class="col-lg-2">
+        <select class="form-control selector" ng-model="selectedFlatLetters"  ng-options="value.id as value.value for (key, value) in letters" data-style="btn-primary"></select>
+
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Наймач:</label>
+      <div class="col-lg-2" ng-class="{'has-error':addressSelecionForm.address_number_renter.$invalid && addressSelecionForm.address_number_renter.$dirty}">
+        <input placeholder="наймач" type="text" class="form-control" id="address_number_renter" name="address_number_renter"
+               ng-model="address_number_renter"
+               ng-maxlength="1"
+               ng-pattern="/^[1-9]*$/">
+        <p class="text-danger" ng-show="addressSelecionForm.address_number_renter.$dirty && addressSelecionForm.address_number_renter.$error.maxlength">Номер наймача не повинен мати більше 1 символу</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label"></label>
+      <div class="col-lg-4">
+        <button class="btn btn-default btn-right" id="next" name="next"  ng-click="open()">Далі >></button>
+      </div>
+    </div>
+      <p ng-show="city.selected.nameUk != null"><strong>Ви обрали адресу:</strong></p>
+      <p style="font-size: 16px">
+          <span ng-show="city.selected.nameUk != null"><span class="nameInput"> місто: </span>{{city.selected.nameUk}}
+            <span ng-show="street.selected.nameUk != null"><span class="nameInput"> {{street.selected.streetTypesUk || 'вул '}}</span>{{street.selected.nameUk}}
+              <span ng-show="address_number_building != null"><span class="nameInput"> будинок: </span>{{address_number_building}}<span ng-show="selectedBuildingLetter != 00">{{letters[selectedBuildingLetter].value}} </span>
+                  <span ng-show="address_housing != null"><span class="nameInput"> корпус: </span>{{address_housing}} </span>
+                  <span ng-show="address_number_flats != null"><span class="nameInput"> квартира: </span>{{address_number_flats}}<span ng-show="selectedFlatLetters != 00">{{letters[selectedFlatLetters].value}}</span></span>
+                  <span ng-show="address_number_renter != null"><span class="nameInput"> наймач: </span>{{address_number_renter}} </span>
+              </span>
+            </span>
+          </span>
+      </p>
+  </form>
+</div>

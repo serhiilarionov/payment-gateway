@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-sm-offset-2 col-sm-2 col-lg-2">
+    <h2 style="color: #23AA09; margin-top: 50px;">LIQPAY>></h2>
+  </div>
+  <form class="form-horizontal col-sm-4 col-lg-5">
+    <label for="liqpay_public_key" class="" style="">Публічний ключ</label>
+    <input type="text" class="form-control" id="liqpay_public_key" name ="liqpay_public_key" ng-model="liqpay.options.public_key" required>
+    <label for="liqpay_private_key" class="" style="margin-top: 5px;">Приватний ключ</label>
+    <input type="text" class="form-control" id="liqpay_private_key" name ="liqpay_private_key" ng-model="liqpay.options.private_key" required>
+    <label>
+      <input type="checkbox" id="liqpay_sandbox" name="liqpay_sandbox" ng-model="liqpay.options.sandbox"> Тестовий режим
+    </label>
+    <button id="accrual" class="btn btn-success " style="margin-top: 5px;" ng-click="setChanges()">
+      <span class="text-capitalize">Внести зміни</span>
+    </button>
+  </form>
+</div>

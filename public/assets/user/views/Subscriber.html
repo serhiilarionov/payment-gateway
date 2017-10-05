@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-lg-2 col-sm-2">
+        <div class=" list-group" >
+            <a ui-sref="subscriber.initUser" href="" class="list-group-item menu"
+               ng-class="{ active: isActive('/subscriber/init')}">Вибір абонента</a>
+            <a ui-sref="subscriber./accrual/amounts" href="" class="list-group-item menu"
+               ng-class="{ active: isActive('/subscriber/accrual/amounts'), 'disabled': auth()}" >Нараховані суми</a>
+            <a ui-sref="subscriber./payments" href="" class="list-group-item menu"
+               ng-class="{ active: isActive('/subscriber/payments'), 'disabled': auth()}"> Всі платежі</a>
+            <a ui-sref="subscriber./payments/online" href="" class="list-group-item menu"
+               ng-class="{ active: isActive('/subscriber/payments/online'), 'disabled': auth()}"> Online платежі</a>
+            <a ui-sref="subscriber./subscriber/to/pay" href="" class="list-group-item menu"
+               ng-class="{ active: isActive('/subscriber/to/pay'), 'disabled': auth()}" >Сплатити</a>
+            <a href="#/" class="list-group-item menu" ng-click="logOut()"
+               ng-class="{  'disabled': auth()}">Вийти </a>
+        </div>
+    </div>
+    <div class="col-lg-9 container-fluid" >
+        <div ncy-breadcrumb></div>
+        <div ui-view></div>
+    </div>
+</div>

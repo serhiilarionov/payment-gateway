@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Пін код</title>
+</head>
+<body style="font-family: 'Times New Roman'; font-size: 11pt; align-content: center;">
+<div style="margin-left: 10%">
+  <div style="text-align: center">Довідково-інформаційна служба м. <%= address.city %></div><br>
+  <div style="text-align: center">Довідка № <%= number %></div>
+  <div style="text-align: center">про присвоєння коду</div>
+  <div style="margin-left: 10%">у автоматизованій системі комунальних розрахунків<br>
+    за адресою: <span style="font-size: 12pt;">вул. <%= address.street %> буд. <%= address.buildingNumber%><% if(address.buildingLetter) {%><%= address.buildingLetter %> <%}%> <% if(address.housing) {%> <%= 'корп.' + address.housing %> <%}%> <% if(address.numberFlat) {%> <%= 'кв.' + address.numberFlat %> <%}%><%= address.flatLetter %>.</span><br>
+    Уповноважений власник/наймач: <%= lastName%> <%= firstName%> <%= patronymic%><br>
+    Комунальний код: <span style="font-size: 14pt;"><%= pinCode%></span></div><br>
+  <div style="text-indent: 20px;">Довідка видана для отримання роздрукованої інформації про суми нароховані до сплати комунальними та іншими службами міста в пунктах прийому платежів Банків та Поштамту, до працюють у (скорочена назва фірми)</div>
+  <div style="text-indent: 20px;">Відповідальність за наслідки, що можуть виникнути у разі втрати коду або передачі коду третій особі несе сам одержувачь коду.</div>
+  <div style="text-indent: 20px;">УВАГА! При втраті коду, необхідно звернутися за новим, оскільки відновлення старого коду неможливо! При кожному звернені за кодом попередній автоматично знищюється!</div>
+  <div style="text-indent: 20px;">Довідка надається тільки в одному екземплярі.<br>
+    Код починає діяти з моменту видачі: <%= date%>.</div><br>
+
+  Оператор ____________
+</div>
+<script type="text/javascript">
+  window.print();
+</script>
+</body>
+</html>
